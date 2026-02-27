@@ -96,10 +96,216 @@
             gap: 20px;
         }
 
+        /* Tablet and below */
         @media (max-width: 1024px) { 
             .dashboard-grid { grid-template-columns: 1fr; } 
             .controls { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; justify-content: flex-start; }
             .stat-pill { flex-direction: column; text-align: center; }
+        }
+
+        /* Tablet portrait and mobile landscape */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            
+            .container { max-width: 100%; }
+            
+            .glass-card { 
+                padding: 15px; 
+                border-radius: 15px;
+                margin-bottom: 15px;
+            }
+            
+            header { 
+                margin-bottom: 20px; 
+                gap: 10px;
+            }
+            
+            .logo h1 { font-size: 1.5rem; }
+            
+            .controls { 
+                width: 100%; 
+                justify-content: stretch; 
+            }
+            
+            .btn { 
+                flex: 1 1 auto; 
+                min-height: 44px; 
+                padding: 12px 16px;
+                font-size: 0.9rem;
+                justify-content: center;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .chart-container { 
+                height: 250px; 
+            }
+            
+            .glass-card.expanded .chart-container { 
+                height: 350px; 
+            }
+            
+            .progress-stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            table { 
+                font-size: 0.85rem; 
+                min-width: 600px;
+            }
+            
+            th, td { 
+                padding: 8px; 
+            }
+            
+            .table-wrapper {
+                margin-left: -15px;
+                margin-right: -15px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .chart-toggle {
+                gap: 8px;
+            }
+            
+            .toggle-btn {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+                min-height: 44px;
+            }
+            
+            #timer-display {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Mobile portrait */
+        @media (max-width: 480px) {
+            body { padding: 8px; }
+            
+            .glass-card { 
+                padding: 12px; 
+                border-radius: 12px;
+            }
+            
+            .logo h1 { 
+                font-size: 1.3rem; 
+                letter-spacing: -0.5px;
+            }
+            
+            .logo p {
+                font-size: 0.8rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn { 
+                width: 100%; 
+                min-height: 48px;
+            }
+            
+            .stat-pill {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .chart-container { 
+                height: 220px; 
+            }
+            
+            .glass-card.expanded .chart-container { 
+                height: 300px; 
+            }
+            
+            table { 
+                font-size: 0.8rem; 
+                min-width: 500px;
+            }
+            
+            th, td { 
+                padding: 6px; 
+            }
+            
+            .toggle-btn {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+                flex: 1 1 auto;
+            }
+            
+            .chart-toggle {
+                width: 100%;
+            }
+            
+            .chart-toggle .btn {
+                flex: 1;
+            }
+            
+            #timer-display {
+                font-size: 2rem;
+            }
+            
+            .search-input, select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Extra small phones */
+        @media (max-width: 360px) {
+            .logo h1 { font-size: 1.1rem; }
+            
+            .chart-container { height: 200px; }
+            
+            table { 
+                font-size: 0.75rem; 
+                min-width: 450px;
+            }
+        }
+
+        /* Mobile landscape mode */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body { padding: 5px; }
+            
+            header { 
+                margin-bottom: 10px;
+                gap: 5px;
+            }
+            
+            .logo h1 { font-size: 1.2rem; }
+            .logo p { font-size: 0.75rem; }
+            
+            .glass-card { 
+                padding: 10px; 
+                margin-bottom: 10px;
+            }
+            
+            .chart-container { 
+                height: 180px; 
+            }
+            
+            .glass-card.expanded .chart-container { 
+                height: 250px; 
+            }
+            
+            #welcome-screen {
+                padding: 3vh 15px;
+            }
+            
+            #welcome-screen i {
+                font-size: 2.5rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
         }
 
         .stat-pill {
@@ -198,7 +404,34 @@
 
         #timer-display { font-size: 3rem; font-weight: 800; font-variant-numeric: tabular-nums; text-align: center; margin: 10px 0; color: var(--accent); }
 
-        .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .table-wrapper { 
+            width: 100%; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            position: relative;
+        }
+        
+        /* Scroll indicator for mobile */
+        @media (max-width: 768px) {
+            .table-wrapper::after {
+                content: '→';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background: linear-gradient(to left, var(--card-bg) 50%, transparent);
+                padding: 10px 15px;
+                font-size: 1.2rem;
+                color: var(--primary);
+                pointer-events: none;
+                opacity: 0.7;
+            }
+            
+            .table-wrapper.scrolled-end::after {
+                display: none;
+            }
+        }
+        
         table { width: 100%; border-collapse: collapse; margin-top: 15px; min-width: 700px; }
         th { text-align: left; color: var(--text-dim); padding: 12px; border-bottom: 1px solid var(--glass-border); white-space: nowrap; }
         td { padding: 12px; border-bottom: 1px solid var(--glass-border); }
@@ -209,6 +442,47 @@
         .sortable-header.sort-desc::after { content: ' ↓'; color: var(--primary); }
 
         .chart-container { height: 300px; position: relative; width: 100%; }
+        
+        /* Welcome screen mobile optimization */
+        #welcome-screen {
+            text-align: center;
+            padding: 10vh 20px;
+        }
+        
+        @media (max-width: 768px) {
+            #welcome-screen {
+                padding: 6vh 15px;
+            }
+            
+            #welcome-screen i {
+                font-size: 3.5rem !important;
+            }
+            
+            #welcome-screen h2 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            
+            #welcome-screen p {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #welcome-screen {
+                padding: 4vh 10px;
+            }
+            
+            #welcome-screen i {
+                font-size: 3rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            #welcome-screen h2 {
+                font-size: 1.1rem;
+            }
+        }
         
         .badge-pr { background: var(--secondary); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
     </style>
@@ -484,6 +758,33 @@
         document.getElementById('welcome-screen').classList.add('hidden');
         document.getElementById('main-dashboard').classList.remove('hidden');
         processData(globalData);
+        setupTableScrollIndicator();
+    }
+
+    function setupTableScrollIndicator() {
+        // Setup scroll indicator for table on mobile
+        const tableWrappers = document.querySelectorAll('.table-wrapper');
+        tableWrappers.forEach(wrapper => {
+            wrapper.addEventListener('scroll', function() {
+                const scrollLeft = this.scrollLeft;
+                const scrollWidth = this.scrollWidth;
+                const clientWidth = this.clientWidth;
+                
+                // Check if scrolled to end
+                if (scrollLeft + clientWidth >= scrollWidth - 5) {
+                    this.classList.add('scrolled-end');
+                } else {
+                    this.classList.remove('scrolled-end');
+                }
+            });
+            
+            // Initial check
+            const scrollWidth = wrapper.scrollWidth;
+            const clientWidth = wrapper.clientWidth;
+            if (scrollWidth <= clientWidth) {
+                wrapper.classList.add('scrolled-end');
+            }
+        });
     }
 
     function processData(data) {
